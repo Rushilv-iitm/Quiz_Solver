@@ -9,6 +9,18 @@ from fastapi import FastAPI, Request, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from solver import QuizSolver
+from fastapi.responses import HTMLResponse, FileResponse
+
+app = FastAPI()
+
+@app.get("/", response_class=HTMLResponse)
+async def root():
+    return "<html><head><title>Quiz Solver</title></head><body><h1>Quiz Solver is live 🎉</h1></body></html>"
+
+# optional favicon route to silence 404 for /favicon.ico
+@app.get("/favicon.ico")
+async def favicon():
+    return FileResponse("static/favicon.ico")
 
 
 load_dotenv()
@@ -50,4 +62,5 @@ def receive_quiz(payload: QuizPayload):
 
 
     elapsed = time.time() - start
+
     return {"status":"ok","elapsed_sec": elapsed, "result": result}
