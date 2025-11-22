@@ -1,4 +1,4 @@
-# Use official Playwright Python image (has Chromium + deps)
+# Use official Playwright Python image (has Playwright preinstalled)
 FROM mcr.microsoft.com/playwright/python:v1.47.0-focal
 
 # Set work directory
@@ -8,13 +8,16 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# 🔴 IMPORTANT: install browser binaries inside the image
+RUN playwright install --with-deps chromium
+
 # Copy rest of the code
 COPY . .
 
-# Environment variables will be set on the platform, but we keep defaults
+# Environment variables will be set on the platform
 ENV PORT=8000
 
-# Expose port (for docs only; actual port is decided by platform)
+# Expose port (Railway will set actual port via $PORT)
 EXPOSE 8000
 
 # Start FastAPI app
