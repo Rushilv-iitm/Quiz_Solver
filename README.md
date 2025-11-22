@@ -150,25 +150,6 @@ Link to this repository.
 
 ---
 
-## 🧠 Viva Preparation — Key Design Choices
-
-### Why FastAPI?
-- Fast and ideal for JSON APIs.
-
-### Why Playwright?
-- Required to render JavaScript quizzes.
-
-### Why pdfplumber + pandas?
-- Clean table extraction and data operations.
-
-### How the 3-minute limit is met?
-- Strict timeouts  
-- Single browser instance  
-- Efficient parsing  
-- Minimal overhead  
-
----
-
 ## 📜 License
 Released under the **MIT License**.
 
@@ -176,3 +157,4 @@ Released under the **MIT License**.
 
 ## 👨‍💻 Author
 Rushil Venkateshkumar
+
